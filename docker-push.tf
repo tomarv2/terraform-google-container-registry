@@ -13,7 +13,8 @@ resource "null_resource" "gcr_docker_image" {
 
 locals {
   build_command = <<EOF
-        ${path.module}/scripts/build.sh ${var.name}:${var.tag} ${var.gcp_project} ${var.dockerfile_folder}
+        ${path.module}/scripts/build.sh ${var.name}:${var.tag} ${data.google_project.project.name} ${var.dockerfile_folder}
     EOF
 }
 
+data "google_project" "project" {}
